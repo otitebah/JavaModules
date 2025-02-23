@@ -23,9 +23,7 @@ The purpose of this project is to:
 ├── 📂 JavaModule00
 │    ├── ex00
 │    ├── ex01
-│    ├── ex02
-│    ├── ex03
-│    └── ex04
+│    └── ex02
 └── README.md
 ```
 
@@ -38,11 +36,6 @@ Exercise 00: Sum of Digits: Calculate the sum of digits of a given number.
 Exercise 01: Really Prime Number: Determine if a number is a "really" prime number.
 
 Exercise 02: Endless Sequence (or not?): Analyze and manage potentially infinite sequences.
-
-Exercise 03: A Little Bit of Statistics: Perform basic statistical calculations.
-
-Exercise 04: A Bit More of Statistics: Dive deeper into advanced statistical measures.
-
 
 
 🏆 Goals
