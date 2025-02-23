@@ -1,17 +1,22 @@
-package JavaModule01.ex00;
 
 import java.util.UUID;
+import java.util.List;
+import java.util.ArrayList;
+// import JavaModule01.ex00.Transaction;
+
 
 public class User{
     private UUID    identifier;
     private String  name;
     private double  balance;
+    public List<Transaction> transactions;
 
     //Constructor
     public User(String name, double balance){
         this.identifier = UUID.randomUUID();
         this.name = name;
         this.balance = balance; 
+        this.transactions = new ArrayList<>();
     }
 
     //Getters
@@ -45,10 +50,28 @@ public class User{
             System.out.println("Error: " + this.name + " does not have enough money!");
             return;
         }
-        this.setBalance(this.getBalance() - amount);
+        if (recipient.getName() == this.name){
+            System.out.println("Error: You can't send money to yourself!!");
+            return;
+        }
+        // Deduct money from sender, add to recipient
+        double newBalence = this.getBalance() - amount;
+        this.setBalance(newBalence);
         recipient.setBalance(recipient.getBalance() + amount);
-        @SuppressWarnings("unused")
-        Transaction transaction = new Transaction(this, recipient, amount);
+
+        // Generate a single UUID for both transactions
+        UUID transactionId = UUID.randomUUID();
+
+        // Create transactions
+        Transaction senderTransaction = new Transaction(transactionId, this, recipient, newBalence, "OUTCOME");
+        Transaction recipientTransaction = new Transaction(transactionId, this, recipient, amount, "INCOME");
+
+        this.transactions.add(senderTransaction);
+        recipient.transactions.add(recipientTransaction);
+        System.out.println(this.transactions);
+        System.out.println(recipient.transactions);
+
         System.out.println("Transaction successful: " + this.name + " sent " + amount + " to " + recipient.name);
     }
+
 }

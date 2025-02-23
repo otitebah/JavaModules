@@ -1,8 +1,8 @@
-package JavaModule01.ex00;
 
 import java.util.UUID;
+// import JavaModule01.ex00.User;
 
-class Transaction{
+public class Transaction{
     private UUID    identifier;
     private User    recipient;
     private User    sender;
@@ -10,11 +10,12 @@ class Transaction{
     private double     transferAmount;
 
     //constructor
-    Transaction(User sender, User recipient, double amount){
-        this.identifier = UUID.randomUUID();
+    Transaction(UUID    identifier, User sender, User recipient, double amount, String transferCategory){
+        this.identifier = identifier;
         this.sender = sender;
         this.recipient = recipient;
         this.transferAmount = amount;
+        this.transferCategory = transferCategory;
     }
 
 
@@ -33,5 +34,16 @@ class Transaction{
     }
     public double getTransferAmount() {
         return this.transferAmount;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + identifier +
+                ", sender=" + sender.getName() +
+                ", recipient=" + recipient.getName() +
+                ", category='" + this.getTransferCategory() + '\'' +
+                '}';
     }
 }
